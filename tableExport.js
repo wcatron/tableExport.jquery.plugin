@@ -32,7 +32,8 @@ THE SOFTWARE.*/
 						pdfLeftMargin:20,
 						escape:'true',
 						htmlContent:'false',
-						consoleLog:'false'
+						consoleLog:'false',
+						filename:'exportData'
 				};
                 
 				var options = $.extend(defaults, options);
@@ -75,7 +76,7 @@ THE SOFTWARE.*/
 						console.log(tdData);
 					}
 					var base64data = "base64," + $.base64.encode(tdData);
-					window.open('data:application/'+defaults.type+';filename=exportData;' + base64data);
+					window.open('data:application/'+defaults.type+';filename='+defaults.filename+'.'+defaults.type+';' + base64data);
 				}else if(defaults.type == 'sql'){
 				
 					// Header
@@ -119,7 +120,7 @@ THE SOFTWARE.*/
 					}
 					
 					var base64data = "base64," + $.base64.encode(tdData);
-					window.open('data:application/sql;filename=exportData;' + base64data);
+					window.open('data:application/sql;filename='+defaults.filename+'.sql;' + base64data);
 					
 				
 				}else if(defaults.type == 'json'){
@@ -168,7 +169,7 @@ THE SOFTWARE.*/
 						console.log(JSON.stringify(jsonExportArray));
 					}
 					var base64data = "base64," + $.base64.encode(JSON.stringify(jsonExportArray));
-					window.open('data:application/json;filename=exportData;' + base64data);
+					window.open('data:application/json;filename='+defaults.filename+'.json;' + base64data);
 				}else if(defaults.type == 'xml'){
 				
 					var xml = '<?xml version="1.0" encoding="utf-8"?>';
@@ -209,7 +210,7 @@ THE SOFTWARE.*/
 					}
 					
 					var base64data = "base64," + $.base64.encode(xml);
-					window.open('data:application/xml;filename=exportData;' + base64data);
+					window.open('data:application/xml;filename='+defaults.filename+'.xml;' + base64data);
 
 				}else if(defaults.type == 'excel' || defaults.type == 'doc'|| defaults.type == 'powerpoint'  ){
 					//console.log($(this).html());
@@ -276,7 +277,7 @@ THE SOFTWARE.*/
 					excelFile += "</html>";
 
 					var base64data = "base64," + $.base64.encode(excelFile);
-					window.open('data:application/vnd.ms-'+defaults.type+';filename=exportData.doc;' + base64data);
+					window.open('data:application/vnd.ms-'+defaults.type+';filename='+defaults.filename+'.doc;' + base64data);
 					
 				}else if(defaults.type == 'png'){
 					html2canvas($(el), {
